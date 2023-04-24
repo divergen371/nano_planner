@@ -1,5 +1,8 @@
 # NanoPlanner
 
+改定新版 ELIXIR/PHOENIX 初級②〜⑤で作るアプリの写経。
+
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
