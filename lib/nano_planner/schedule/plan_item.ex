@@ -3,6 +3,8 @@ defmodule NanoPlanner.Schedule.PlanItem do
   import Ecto.Changeset
 
   schema "plan_item" do
+    field :name, :string
+    field :description, :string
     timestamps()
   end
 
