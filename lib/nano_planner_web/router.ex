@@ -1,4 +1,5 @@
 defmodule NanoPlannerWeb.Router do
+  alias NanoPlanner.Schedule.PlanItem
   use NanoPlannerWeb, :router
 
   pipeline :browser do
@@ -13,5 +14,6 @@ defmodule NanoPlannerWeb.Router do
     pipe_through :browser
 
     get "/", TopController, :index
+    get "plan_items", PlanItemController, :index
   end
 end
