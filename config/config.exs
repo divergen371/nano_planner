@@ -32,7 +32,7 @@ config :logger, :console,
 config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 
 config :nano_planner, NanoPlanner.Repo,
-  migration_timestamps: [type: :utc_datetime_usec]
+  migration_timestamps: [type: :timestamptz]
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
