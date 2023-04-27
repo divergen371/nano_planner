@@ -19,20 +19,20 @@ time1 =
 insert!(%PlanItem{
   name: "読書",
   description: "『走れメロス』を読む",
-  start_at: Timex.shift(time0, days: 1, hours: 10),
+  starts_at: Timex.shift(time0, days: 1, hours: 10),
   ends_at: Timex.shift(time0, days: 1, hours: 11)
 })
 
 insert!(%PlanItem{
   name: "買い物",
   description: "洗剤を買う",
-  start_at: Timex.shift(time0, hours: 16),
+  starts_at: Timex.shift(time0, hours: 16),
   ends_at: Timex.shift(time0, hours: 16, minutes: 30)
 })
 
 insert!(%PlanItem{
   name: "帰省",
   description: "新幹線の指定席を取る。\nお土産を買う",
-  start_at: Timex.shift(time1, years: 1, days: -2),
+  starts_at: Timex.shift(time1, years: 1, days: -2),
   ends_at: Timex.shift(time1, years: 1, days: 3)
 })
