@@ -28,7 +28,7 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-#Configures the default time zone database
+# Configures the default time zone database
 config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 
 # Use Jason for JSON parsing in Phoenix
