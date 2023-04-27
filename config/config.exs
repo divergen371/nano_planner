@@ -31,6 +31,9 @@ config :logger, :console,
 # Configures the default time zone database
 config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 
+config :nano_planner, NanoPlanner.Repo,
+  migration_timestamps: [type: :utc_datetime_usec]
+
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
