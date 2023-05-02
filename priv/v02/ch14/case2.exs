@@ -15,8 +15,8 @@ for e <- list do
       l when is_list(l) ->
         Enum.join(l, ":")
 
-      s when is_struct(s) ->
-        "name = #{s.name}"
+      %User{} = u ->
+        "name = #{u.name}"
 
       m when is_map(m) ->
         "value = #{m.value}"
