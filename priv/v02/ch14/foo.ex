@@ -5,7 +5,7 @@ defmodule Foo do
     end
   end
 
-  def hello(%{name: _} = user) do
+  def hello(user) when is_map(user) do
     IO.puts("Hello, #{user.name}")
   end
 
