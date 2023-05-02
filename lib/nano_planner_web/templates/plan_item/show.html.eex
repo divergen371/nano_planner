@@ -5,7 +5,7 @@
   </div>
   <div class="row">
     <div class="col-12 col-md-4">説明</div>
-    <div class="col-12 col-md8">
+    <div class="col-12 col-md-8">
       <%= for line <- String.split(@plan_item.description, "\n") do %>
         <%= line  %><br>
       <% end %>
