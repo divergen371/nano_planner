@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid plan-item">
   <div class="row">
     <div class="col-12 col-md-4 bg-info text-white text-md-right">件名</div>
     <div class="col-12 col-md-8"><%= @plan_item.name %></div>
