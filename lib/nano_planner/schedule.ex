@@ -10,6 +10,10 @@ defmodule NanoPlanner.Schedule do
     |> convert_datetime()
   end
 
+  def get_plan_item!(id) do
+    Repo.get!(PlanItem, id)
+  end
+
   defp convert_datetime(items) do
     time_zone = Application.get_env(:nano_planner, :default_time_zone)
 
