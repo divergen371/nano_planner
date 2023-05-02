@@ -1,6 +1,4 @@
 defmodule NanoPlannerWeb.Router do
-  alias NanoPlannerWeb.PlanItemController
-  alias NanoPlanner.Schedule.PlanItem
   use NanoPlannerWeb, :router
 
   pipeline :browser do
