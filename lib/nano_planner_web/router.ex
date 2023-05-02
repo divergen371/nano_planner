@@ -1,4 +1,5 @@
 defmodule NanoPlannerWeb.Router do
+  alias NanoPlannerWeb.PlanItemController
   alias NanoPlanner.Schedule.PlanItem
   use NanoPlannerWeb, :router
 
@@ -15,5 +16,6 @@ defmodule NanoPlannerWeb.Router do
 
     get "/", TopController, :index
     get "/plan_items", PlanItemController, :index
+    get "/plan_items/:id", PlanItemController, :show
   end
 end
