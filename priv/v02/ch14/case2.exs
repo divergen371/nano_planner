@@ -15,7 +15,7 @@ for e <- list do
       l when is_list(l) ->
         Enum.join(l, ":")
 
-      %User{} = u ->
+      %{__struct__: User} = u ->
         "name = #{u.name}"
 
       m when is_map(m) ->
@@ -24,5 +24,6 @@ for e <- list do
       b when is_boolean(b) ->
         b
     end
-    IO.puts(x)
+
+  IO.puts(x)
 end
