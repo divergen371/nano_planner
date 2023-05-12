@@ -20,9 +20,9 @@
     </header>
     <main>
       <%= @inner_content %>
-      </main>
-      <footer>
-        &copy; 2021 Coregenik Inc
-      </footer>
+    </main>
+    <footer>
+      &copy; 2021 Coregenik Inc
+    </footer>
   </body>
 </html>
