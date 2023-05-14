@@ -1,4 +1,5 @@
 <form action="/lessons/register">
+<div class="display-3"><%= document_title(assigns) %></div>
   <div class="form-group">
     <label for="user-name">
       ユーザー名
