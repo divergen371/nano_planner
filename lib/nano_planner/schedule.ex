@@ -1,4 +1,7 @@
 defmodule NanoPlanner.Schedule do
+  @moduledoc """
+    The Schedule context.
+  """
   import Ecto.Query, warn: false
   alias NanoPlanner.Repo
   alias NanoPlanner.Schedule.PlanItem

@@ -1,4 +1,7 @@
 defmodule NanoPlanner.Schedule.PlanItem do
+  @moduledoc """
+    Schema module
+  """
   use Ecto.Schema
   import Ecto.Changeset
 
