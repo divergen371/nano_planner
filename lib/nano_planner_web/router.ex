@@ -17,7 +17,7 @@ defmodule NanoPlannerWeb.Router do
     get "/lessons/register", LessonController, :register
     get "/plan_items", PlanItemController, :index
     get "/plan_items/new", PlanItemController, :new
-    get "/plan_item", PlanItemController, :create
+    post "/plan_items", PlanItemController, :create
     get "/plan_items/:id", PlanItemController, :show
   end
 end
