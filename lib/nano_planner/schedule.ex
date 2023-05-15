@@ -24,7 +24,7 @@ defmodule NanoPlanner.Schedule do
   end
 
   def change_plan_item(%PlanItem{} = item) do
-    Ecto.Changeset.cast(item, %{}, [])
+    PlanItem.changeset(item, %{})
   end
 
   defp convert_datetime(items) when is_list(items) do
