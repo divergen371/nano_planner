@@ -14,6 +14,7 @@ defmodule NanoPlannerWeb.PlanItemController do
   end
 
   def create(conn, _params) do
+    # conn = Plug.Conn.put_status(conn, 301)
     redirect(conn, to: Routes.plan_item_path(conn, :index))
   end
 
