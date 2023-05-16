@@ -42,6 +42,13 @@ defmodule NanoPlanner.Schedule do
     Application.get_env(:nano_planner, :default_time_zone)
   end
 
+  def create_plan_item(attrs) do
+    item = %PlanItem{}
+    fields = [:name, :description, :starts_at, :ends_at]
+    cs = Ecto.Changeset.cast(item, attrs, fields)
+    Repo.insert!(cs)
+  end
+
   def change_plan_item(%PlanItem{} = item) do
     PlanItem.changeset(item, %{})
   end
