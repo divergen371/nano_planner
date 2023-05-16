@@ -22,4 +22,10 @@ defmodule NanoPlannerWeb.PlanItemController do
     plan_item = Schedule.get_plan_item!(id)
     render(conn, "show.html", plan_item: plan_item)
   end
+
+  def edit(conn, %{"id" => id}) do
+    plan_item = Schedule.get_plan_item!(id)
+    changeset = Schedule.change_plan_item(plan_item)
+    render(conn, "edit.html", plan_item: plan_item, changeset: changeset)
+  end
 end
