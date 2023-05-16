@@ -2,6 +2,7 @@ defmodule NanoPlanner.Schedule.PlanItem do
   @moduledoc """
     Schema module
   """
+  alias NanoPlanner.Schedule.PlanItem
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -14,9 +15,8 @@ defmodule NanoPlanner.Schedule.PlanItem do
   end
 
   @doc false
-  def changeset(plan_item, attrs) do
+  def changeset(%PlanItem{} = plan_item, attrs) do
     plan_item
-    |> cast(attrs, [])
-    |> validate_required([])
+    |> cast(attrs, [:name, :description, :starts_at, :ends_at])
   end
 end
