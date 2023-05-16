@@ -8,7 +8,7 @@ defmodule NanoPlanner.Schedule.PlanItem do
 
   schema "plan_item" do
     field :name, :string
-    field :description, :string
+    field :description, :string, default: ""
     field :starts_at, :utc_datetime
     field :ends_at, :utc_datetime
     timestamps(type: :utc_datetime_usec)
