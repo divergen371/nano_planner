@@ -10,6 +10,7 @@
       class: "btn btn-secondary btn-sm" do %>
         <i class="fa fa-list"></i> 予定表へ戻る
       <% end %>
+      <%= render "_md_toolbar.html", conn: @conn, item: @plan_item %>
     </div>
   </div>
   <div class="row">
