@@ -2,7 +2,7 @@
     <div class="col-12 date-and-time">
         <div>
             <%= date_input @f, :"#{@prefix}_date",
-              class: "form-controll", required: true %>
+              class: "form-control", required: true %>
         </div>
         <div>
             <%= select_for_hours @f, :"#{@prefix}_hour" %>:
