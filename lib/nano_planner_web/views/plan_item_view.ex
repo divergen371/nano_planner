@@ -51,7 +51,11 @@ defmodule NanoPlannerWeb.PlanItemView do
   end
 
   def select_for_minute(form, field) do
-    option = Enum.map(0..59, &{two_digits(&1), &1})
+    option =
+      0..11
+      |> Enum.map(&(&1 * 5))
+      |> Enum.map(&{two_digits(&1), &1})
+
     select(form, field, option, class: "form-control", required: true)
   end
 
