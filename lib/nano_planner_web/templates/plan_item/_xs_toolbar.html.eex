@@ -2,6 +2,6 @@
   <i class="fa fa-pen-square"></i>
 <% end %>
 <%= link to: Routes.plan_item_path(@conn, :delete, @item.id),
-method: :delete do %>
+method: :delete, data: [confirm: "本当に削除しますか？"] do %>
   <i class="fa fa-trash fa-lg"></i>
 <% end %>
