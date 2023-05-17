@@ -16,7 +16,7 @@ defmodule NanoPlanner.Schedule.PlanItem do
     field :s_minute, :integer, virtual: true
     field :e_date, :date, virtual: true
     field :e_hour, :integer, virtual: true
-    field :eminute, :integer, virtual: true
+    field :e_minute, :integer, virtual: true
     timestamps(type: :utc_datetime_usec)
   end
 
