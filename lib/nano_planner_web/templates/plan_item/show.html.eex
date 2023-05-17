@@ -4,6 +4,7 @@
       <%= link to: Routes.plan_item_path(@conn, :index) do %>
         <i class="fa fa-list fa-lg"></i>
       <% end %>
+      <%= render "_xs_toolbar.html", conn: @conn, item: @plan_item %>
     </div>
     <div class="col-md-12 d-none d-md-block text-right pr-0">
       <%= link to: Routes.plan_item_path(@conn, :index),

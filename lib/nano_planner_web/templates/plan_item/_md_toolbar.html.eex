@@ -1,3 +1,8 @@
-<%= link to: Routes.plan_item_path(@conn, :edit, @item.id), class: "btn btn-secondary btn-sm" do %>
+<%= link to: Routes.plan_item_path(@conn, :edit, @item.id),
+ class: "btn btn-secondary btn-sm" do %>
   <i class="fa fa-pen-square"></i> 変更
+<% end %>
+<%= link to: Routes.plan_item_path(@conn, :delete, @item.id),
+ method: :delete, class: "btn btn-secondary btn-sm" do %>
+  <i class="fa fa-pen-square"></i> 削除
 <% end %>
