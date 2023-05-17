@@ -44,4 +44,12 @@ defmodule NanoPlannerWeb.PlanItemView do
     wday = Timex.days_to_beginning_of_week(datetime, :sun)
     Enum.at(@weekday_names, wday)
   end
+
+  def select_for_hours(form, field) do
+    select(form, field, 0..23, class: "form-control", required: true)
+  end
+
+  def select_for_minute(form, field) do
+    select(form, field, 0..59, class: "form-control", required: true)
+  end
 end
