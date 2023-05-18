@@ -28,7 +28,7 @@ defmodule NanoPlanner.Schedule do
     t1 = Timex.shift(t0, hours: 24)
 
     PlanItem
-    |> where([i], i.start_at < ^t0 and i.ends > ^t1)
+    |> where([i], i.starts_at < ^t0 and i.ends_at > ^t1)
     |> fetch_plan_items()
   end
 

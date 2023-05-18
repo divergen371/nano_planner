@@ -9,11 +9,11 @@ defmodule NanoPlannerWeb.PlanItemController do
 
   def of_today(conn, _params) do
     plan_items = Schedule.list_plan_items_of_today()
-    continued_plan_item = Schedule.list_continued_plan_items()
+    continued_plan_items = Schedule.list_continued_plan_items()
 
     render(conn, "of_today.html",
       plan_items: plan_items,
-      continued_plan_item: continued_plan_item
+      continued_plan_items: continued_plan_items
      )
   end
 
