@@ -4,8 +4,9 @@ alias NanoPlanner.Repo
 
 items =
   PlanItem
+  |> where(name: "買い物")
   |> order_by(asc: :id)
   |> Repo.all()
-  |> Enum.map(& &1.name)
+  |> Enum.map(& &1.description)
 
 IO.inspect(items)
