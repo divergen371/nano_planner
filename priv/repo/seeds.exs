@@ -41,7 +41,7 @@ insert!(%PlanItem{
   name: "買い物",
   description: "猫の餌を買う",
   starts_at: Timex.shift(time0, days: 3, hours: 11),
-  ends_at: Timex.shift(time0, days: 3, hours: 11, minute: 30)
+  ends_at: Timex.shift(time0, days: 3, hours: 11, minutes: 30)
 })
 
 insert!(%PlanItem{
