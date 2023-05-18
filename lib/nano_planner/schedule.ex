@@ -14,7 +14,11 @@ defmodule NanoPlanner.Schedule do
   end
 
   def list_plan_items_of_today do
+    t0 = Timex.beginning_of_day(current_time())
+    t1 = Timex.shift(t0, hours: 24)
+
     PlanItem
+    |> where([i], i.starts_at >= ^t0 and i.starts_at < ^t1)
     |> order_by(asc: :starts_at, asc: :ends_at, asc: :id)
     |> Repo.all()
     |> convert_datetime()
