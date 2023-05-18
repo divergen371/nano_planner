@@ -64,4 +64,16 @@ defmodule NanoPlannerWeb.PlanItemView do
     |> Integer.to_string()
     |> String.pad_leading(2, "0")
   end
+
+  @action_label_map %{
+    index: "予定表",
+    of_today: "今日の予定表"
+  }
+  def nav_link(conn, action) do
+    link(
+      @action_label_map[action],
+      to: Routes.plan_item_path(conn, action),
+      class: "nav-link"
+    )
+  end
 end
