@@ -13,6 +13,13 @@ defmodule NanoPlanner.Schedule do
     |> convert_datetime()
   end
 
+  def list_plan_items_of_today do
+    PlanItem
+    |> order_by(asc: :starts_at, asc: :ends_at, asc: :id)
+    |> Repo.all()
+    |> convert_datetime()
+  end
+
   def get_plan_item!(id) do
     PlanItem
     |> Repo.get!(id)
