@@ -23,6 +23,15 @@ defmodule NanoPlanner.Schedule do
     |> fetch_plan_items()
   end
 
+  def list_continued_plan_items do
+    t0 = Timex.beginning_of_day(current_time())
+    t1 = Timex.shift(t0, hours: 24)
+
+    PlanItem
+    |> where([i], i.start_at < ^t0 and i.ends > ^t1)
+    |> fetch_plan_items()
+  end
+
   defp fetch_plan_items(query) do
     query
     |> order_by(asc: :starts_at, asc: :ends_at, asc: :id)
