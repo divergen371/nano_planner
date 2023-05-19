@@ -5,7 +5,7 @@ defmodule NanoPlannerWeb.PlanItemView do
 
   def document_title(assigns) do
     page_title =
-      case assigns.view_template do
+      case assigns do
         "index.html" ->
           "予定表"
         "of_today.html" ->
