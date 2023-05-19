@@ -1,1 +1,1 @@
-<p class="card-text">Hellw world, <%= @name %>!!</p>
+<p class="card-text">Hello world, <%= @name %>!!</p>
