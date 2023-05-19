@@ -3,5 +3,8 @@
     <%= render "_content.html", name: "Alice" %>
     <%= render "_content.html", name: "Bob" %>
     <%= render NanoPlannerWeb.SharedView, "_notes.html" %>
+    <%= view_module(@conn).document_title(assigns) %>
+    <br>
+    <%= view_template(@conn) %>
   </div>
 </div>
