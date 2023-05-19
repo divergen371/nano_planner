@@ -14,7 +14,7 @@ defmodule NanoPlannerWeb.PlanItemController do
     render(conn, "of_today.html",
       plan_items: plan_items,
       continued_plan_items: continued_plan_items
-     )
+    )
   end
 
   def new(conn, _params) do
