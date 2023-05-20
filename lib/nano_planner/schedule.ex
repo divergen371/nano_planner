@@ -106,15 +106,17 @@ defmodule NanoPlanner.Schedule do
   end
 
   defp populate_dates(%PlanItem{all_day: false} = item) do
-  ends_on =
-    case item.ends_at do
-      %DateTime{hour: 0, minute: 0} ->
-        item.ends_at
-        |> DateTime.to_date()
-        |> Timex.shift(days: -1)
-      _ ->
-        DateTime.to_date(item.ends_at)
-    end
+    ends_on =
+      case item.ends_at do
+        %DateTime{hour: 0, minute: 0} ->
+          item.ends_at
+          |> DateTime.to_date()
+          |> Timex.shift(days: -1)
+
+        _ ->
+          DateTime.to_date(item.ends_at)
+      end
+
     Map.merge(item, %{
       starts_on: DateTime.to_date(item.starts_at),
       ends_on: ends_on
