@@ -6,6 +6,21 @@ document.addEventListener("DOMContentLoaded", function () {
       "input[name='plan_item[all_day]'][type='checkbox']"
     );
 
-    console.log(allDay.checked);
+    form.querySelectorAll(".js-date-and-time").forEach(function (div) {
+      div.classList.toggle("d-none", allDay.checked);
+    });
+
+    form.querySelectorAll(".js-date-picker").forEach(function (div) {
+      div.classList.toggle("d-none", !allDay.checked);
+    });
+
+    allDay.addEventListener("change", function () {
+      form.querySelectorAll(".js-date-and-time").forEach(function (div) {
+        div.classList.toggle("d-none", allDay.checked);
+      });
+      form.querySelectorAll(".js-date-picker").forEach(function (div) {
+        div.classList.toggle("d-none", !allDay.checked);
+      });
+    });
   }
 });
