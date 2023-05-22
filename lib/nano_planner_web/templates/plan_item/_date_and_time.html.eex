@@ -1,12 +1,11 @@
 <div class="row">
-    <div class="col-12 date-and-time">
-        <div>
-            <%= date_input @f, :"#{@prefix}_date",
-              class: "form-control", required: true %>
-        </div>
-        <div>
-            <%= select_for_hours @f, :"#{@prefix}_hour" %>:
-            <%= select_for_minute @f, :"#{@prefix}_minute" %>
-        </div>
+  <div class="col-12 date-and-time">
+    <div>
+      <%= date_input @f, :"#{@prefix}_date", class: "form-control"%>
     </div>
+    <div>
+      <%= select_for_hours @f, :"#{@prefix}_hour" %>:
+      <%= select_for_minute @f, :"#{@prefix}_minute" %>
+    </div>
+  </div>
 </div>

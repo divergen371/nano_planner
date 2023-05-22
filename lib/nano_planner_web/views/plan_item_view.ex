@@ -112,7 +112,7 @@ defmodule NanoPlannerWeb.PlanItemView do
 
   def select_for_hours(form, field) do
     option = Enum.map(0..23, &{two_digits(&1), &1})
-    select(form, field, option, class: "form-control", required: true)
+    select(form, field, option, class: "form-control")
   end
 
   def select_for_minute(form, field) do
@@ -121,7 +121,7 @@ defmodule NanoPlannerWeb.PlanItemView do
       |> Enum.map(&(&1 * 5))
       |> Enum.map(&{two_digits(&1), &1})
 
-    select(form, field, option, class: "form-control", required: true)
+    select(form, field, option, class: "form-control")
   end
 
   def two_digits(n) do
