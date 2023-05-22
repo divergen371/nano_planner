@@ -3,6 +3,7 @@ defmodule NanoPlannerWeb.PlanItemView do
 
   alias Timex.Format.DateTime.Formatters.Strftime
   alias NanoPlanner.Schedule.PlanItem
+  import NanoPlannerWeb.BootstrapHelpers
 
   def document_title(assigns) do
     page_title =
