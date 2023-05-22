@@ -2,7 +2,6 @@ defmodule NanoPlanner.Schedule.PlanItem do
   @moduledoc """
     Schema module
   """
-  alias NanoPlanner.Schedule.PlanItem
   use Ecto.Schema
   import Ecto.Changeset
 
