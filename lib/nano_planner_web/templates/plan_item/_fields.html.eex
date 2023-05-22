@@ -1,16 +1,31 @@
 <div class="form-group">
   <%= label @f, :name, "件名" %>
-  <%= text_input @f, :name, class: "form-control", required: true %>
+  <%= text_input @f, :name, class: form_control_class(@f, :name) %>
+  <%= error_tag @f, :name %>
 </div>
 <div class="form-group">
   <%= label @f, :description, "説明" %>
   <%= textarea @f, :description, class: "form-control", rows: 4 %>
 </div>
 <div class="form-group">
+  <div class="custom-control custom-checkbox">
+    <%= checkbox @f,:all_day, class: "custom-control-input" %>
+    <%= label @f, :all_day, "終日", class: "custom-control-label" %>
+  </div>
+</div>
+<div class="form-group js-date-and-time d-none">
   <%= label @f, :starts_at, "開始日時" %>
   <%= render "_date_and_time.html", f: @f, prefix: "s" %>
 </div>
-<div class="form-group">
+<div class="form-group js-date-and-time d-none">
   <%= label @f, :ends_at, "終了日時" %>
   <%= render "_date_and_time.html", f: @f, prefix: "e" %>
+</div>
+<div class="form-group js-date-picker d-none">
+  <%= label @f, :starts_on, "開始日" %>
+  <%= render "_date_picker.html", f: @f, field: :starts_on %>
+</div>
+<div class="form-group js-date-picker d-none">
+  <%= label @f, :ends_on, "終了日" %>
+  <%= render "_date_picker.html", f: @f, field: :ends_on %>
 </div>

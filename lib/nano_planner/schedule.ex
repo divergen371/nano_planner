@@ -34,7 +34,7 @@ defmodule NanoPlanner.Schedule do
 
   defp fetch_plan_items(query) do
     query
-    |> order_by(asc: :starts_at, asc: :ends_at, asc: :id)
+    |> order_by(asc: :starts_at, asc: :all_day, asc: :ends_at, asc: :id)
     |> Repo.all()
     |> convert_datetime()
   end
@@ -47,10 +47,13 @@ defmodule NanoPlanner.Schedule do
 
   def build_plan_item do
     time0 = beginning_of_hour()
+    today = DateTime.to_date(current_time())
 
     %PlanItem{
       starts_at: Timex.shift(time0, hours: 1),
-      ends_at: Timex.shift(time0, hours: 2)
+      ends_at: Timex.shift(time0, hours: 2),
+      starts_on: today,
+      ends_on: today
     }
   end
 
@@ -71,13 +74,13 @@ defmodule NanoPlanner.Schedule do
   def create_plan_item(attrs) do
     %PlanItem{}
     |> PlanItem.changeset(attrs)
-    |> Repo.insert!()
+    |> Repo.insert()
   end
 
   def update_plan_item(%PlanItem{} = plan_item, attrs) do
     plan_item
     |> PlanItem.changeset(attrs)
-    |> Repo.update!()
+    |> Repo.update()
   end
 
   def delete_plan_item(%PlanItem{} = plan_item) do
@@ -87,6 +90,7 @@ defmodule NanoPlanner.Schedule do
   def change_plan_item(%PlanItem{} = item) do
     item
     |> populate_virtual_fields()
+    |> populate_dates()
     |> PlanItem.changeset(%{})
   end
 
@@ -101,6 +105,26 @@ defmodule NanoPlanner.Schedule do
     })
   end
 
+  defp populate_dates(%PlanItem{all_day: false} = item) do
+    ends_on =
+      case item.ends_at do
+        %DateTime{hour: 0, minute: 0} ->
+          item.ends_at
+          |> DateTime.to_date()
+          |> Timex.shift(days: -1)
+
+        _ ->
+          DateTime.to_date(item.ends_at)
+      end
+
+    Map.merge(item, %{
+      starts_on: DateTime.to_date(item.starts_at),
+      ends_on: ends_on
+    })
+  end
+
+  defp populate_dates(%PlanItem{all_day: true} = item), do: item
+
   defp convert_datetime(items) when is_list(items) do
     Enum.map(items, &convert_datetime(&1))
   end
@@ -111,4 +135,23 @@ defmodule NanoPlanner.Schedule do
       ends_at: DateTime.shift_zone!(item.ends_at, time_zone())
     })
   end
+
+  def set_time_boundaries(%PlanItem{all_day: true} = item) do
+    tz = time_zone()
+
+    s =
+      item.starts_on
+      |> DateTime.new!(Time.new!(0, 0, 0), tz)
+      |> DateTime.shift_zone!("Etc/UTC")
+
+    e =
+      item.ends_on
+      |> DateTime.new!(Time.new!(0, 0, 0), tz)
+      |> DateTime.shift_zone!("Etc/UTC")
+      |> Timex.shift(days: 1)
+
+    Map.merge(item, %{starts_at: s, ends_at: e})
+  end
+
+  def set_time_boundaries(%PlanItem{all_day: false} = item), do: item
 end
