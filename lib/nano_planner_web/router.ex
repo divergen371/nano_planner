@@ -17,8 +17,8 @@ defmodule NanoPlannerWeb.Router do
     get "/lessons/register", LessonController, :register
     get "/lessons/hello", LessonController, :hello
 
-    scope "p/plan_item" do
-      get "of_today", PlanItemController, :of_today
+    scope "/plan_item" do
+      get "/of_today", PlanItemController, :of_today
     end
 
     resources "/plan_items", PlanItemController
