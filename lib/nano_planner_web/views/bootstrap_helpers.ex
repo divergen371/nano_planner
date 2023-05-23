@@ -1,5 +1,6 @@
 defmodule NanoPlannerWeb.BootstrapHelpers do
   import Phoenix.HTML.Form
+  import Phoenix.HTML.Tag
 
   @moduledoc """
   Bootstrap style helper
@@ -21,4 +22,13 @@ defmodule NanoPlannerWeb.BootstrapHelpers do
   defp add_class_token(class, token), do: class <> " " <> token
   defp add_class_token(class, token, true), do: class <> " " <> token
   defp add_class_token(class, _token, false), do: class
+
+  def bootstrap_custom_checkbox(form, field, label_text) do
+    content_tag(:div, class: "custom-control custom-checkbox") do
+      [
+        checkbox(form, field, class: "custom-control-input"),
+        label(form, field, label_text, class: "custom-control-label")
+      ]
+    end
+  end
 end
