@@ -92,3 +92,8 @@ msgstr ""
 
 msgid "must be equal to %{number}"
 msgstr ""
+
+#: lib/nano_planner_web/views/error_helpers.ex:34
+#, elixir-autogen, elixir-format
+msgid "%{attribute} %{message}."
+msgstr ""
