@@ -70,9 +70,13 @@ defmodule NanoPlanner.Schedule.PlanItem do
     d = get_field(changeset, :s_date)
     h = get_field(changeset, :s_hour)
     m = get_field(changeset, :s_minute)
-    dt = get_local_datetime(d, h, m)
-    utc_dt = DateTime.shift_zone!(dt, "Etc/UTC")
-    put_change(changeset, :starts_at, utc_dt)
+
+    if dt = get_local_datetime(d, h, m) do
+      utc_dt = DateTime.shift_zone!(dt, "Etc/UTC")
+      put_change(changeset, :starts_at, utc_dt)
+    else
+      changeset
+    end
   end
 
   defp change_ends_at(changeset) do
@@ -84,9 +88,12 @@ defmodule NanoPlanner.Schedule.PlanItem do
     put_change(changeset, :ends_at, utc_dt)
   end
 
-  defp get_local_datetime(date, hour, minute) do
+  defp get_local_datetime(%Date{} = date, hour, minute)
+       when hour in 0..23 and minute in 0..59 do
     DateTime.new!(date, Time.new!(hour, minute, 0), time_zone())
   end
+
+  defp get_local_datetime(_date, _hour, _minute), do: nil
 
   defp change_time_boundaries(changeset) do
     s = convert_to_datetime(get_field(changeset, :starts_on))
