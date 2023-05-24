@@ -95,7 +95,9 @@ defmodule NanoPlanner.Schedule.PlanItem do
     |> put_change(:ends_at, e)
   end
 
-  defp convert_to_datetime(%Date{} = date, delta \\ 0) do
+  defp convert_to_datetime(date, delta \\ 0)
+
+  defp convert_to_datetime(%Date{} = date, delta) do
     date
     |> DateTime.new!(Time.new!(0, 0, 0), time_zone())
     |> DateTime.shift_zone!("Etc/UTC")
