@@ -50,6 +50,7 @@ defmodule NanoPlanner.Schedule.PlanItem do
     |> change_ends_at()
     |> validate_common_fields()
     |> validate_required(@date_time_fields)
+    |> validate_datetime_order()
   end
 
   def changeset(plan_item, %{"all_day" => "true"} = attrs) do
@@ -139,6 +140,22 @@ defmodule NanoPlanner.Schedule.PlanItem do
     if s && e do
       if Date.compare(s, e) == :gt do
         add_error(changeset, :ends_on, @message)
+      else
+        changeset
+      end
+    else
+      changeset
+    end
+  end
+
+  @message "must not be earlier than start time"
+  defp validate_datetime_order(changeset) do
+    s = get_field(changeset, :starts_at)
+    e = get_field(changeset, :ends_at)
+
+    if s && e do
+      if DateTime.compare(s, e) == :gt do
+        add_error(changeset, :ends_at, @message)
       else
         changeset
       end

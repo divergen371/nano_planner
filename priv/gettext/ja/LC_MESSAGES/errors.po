@@ -81,10 +81,14 @@ msgid "must be equal to %{number}"
 msgstr ""
 
 #: lib/nano_planner_web/views/error_helpers.ex:34
-#, elixir-autogen, elixir-format, fuzzy
+#, elixir-autogen, elixir-format
 msgid "%{attribute} %{message}."
 msgstr "%{attribute}%{message}。"
 
 ## From NanoPlanner.Schedule.PlanItem.validate_date_order/1
 msgid "must not be earlier than start date"
 msgstr "は開始日より前であってはいけません"
+
+## From NanoPlanner.Schedule.PlanItem.validate_date_order/1
+msgid "must not be earlier than start time"
+msgstr "は開始日時より前であってはいけません"
