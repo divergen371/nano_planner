@@ -10,8 +10,6 @@ defmodule NanoPlannerWeb.BootstrapHelpers do
   end
 
   def bootstrap_textarea(form, field, opts \\ []) do
-    # TODO #5 bootstrap_text_inputとの共通部分をリファクタリングする
-
     textarea(form, field, html_opts(form, field, opts))
   end
 
