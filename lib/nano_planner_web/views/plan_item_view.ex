@@ -111,18 +111,18 @@ defmodule NanoPlannerWeb.PlanItemView do
     Enum.at(@weekday_names, wday)
   end
 
-  def select_for_hours(form, field) do
-    option = Enum.map(0..23, &{two_digits(&1), &1})
-    select(form, field, option, class: "form-control")
+  def select_for_hours(form, field, opts \\ []) do
+    options = Enum.map(0..23, &{two_digits(&1), &1})
+    bootstrap_select(form, field, options, opts)
   end
 
-  def select_for_minute(form, field) do
-    option =
+  def select_for_minute(form, field, opts \\ []) do
+    options =
       0..11
       |> Enum.map(&(&1 * 5))
       |> Enum.map(&{two_digits(&1), &1})
 
-    select(form, field, option, class: "form-control")
+    bootstrap_select(form, field, options, opts)
   end
 
   def two_digits(n) do
