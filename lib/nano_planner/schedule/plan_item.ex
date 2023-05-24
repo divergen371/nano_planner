@@ -87,25 +87,22 @@ defmodule NanoPlanner.Schedule.PlanItem do
   end
 
   defp change_time_boundaries(changeset) do
-    tz = time_zone()
-
-    s =
-      changeset
-      |> get_field(:starts_on)
-      |> DateTime.new!(Time.new!(0, 0, 0), tz)
-      |> DateTime.shift_zone!("Etc/UTC")
-
-    e =
-      changeset
-      |> get_field(:ends_on)
-      |> DateTime.new!(Time.new!(0, 0, 0), tz)
-      |> DateTime.shift_zone!("Etc/UTC")
-      |> Timex.shift(days: 1)
+    s = convert_to_datetime(get_field(changeset, :starts_on))
+    e = convert_to_datetime(get_field(changeset, :ends_on))
 
     changeset
     |> put_change(:starts_at, s)
     |> put_change(:ends_at, e)
   end
+
+  defp convert_to_datetime(%Date{} = date, delta \\ 0) do
+    date
+    |> DateTime.new!(Time.new!(0, 0, 0), time_zone())
+    |> DateTime.shift_zone!("Etc/UTC")
+    |> Timex.shift(days: delta)
+  end
+
+  defp convert_to_datetime(_date, _delta), do: nil
 
   defp time_zone do
     Application.get_env(:nano_planner, :default_time_zone)
