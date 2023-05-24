@@ -49,7 +49,8 @@ defmodule NanoPlanner.MixProject do
       {:tzdata, "~> 1.1"},
       {:timex, "~> 3.7.5"},
       {:dialyxir, "~> 1.3", only: [:dev], runtime: false},
-      {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
+      {:bcrypt_elixir, "~> 2.0"}
     ]
   end
 
