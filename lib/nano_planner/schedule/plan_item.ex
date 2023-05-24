@@ -49,6 +49,7 @@ defmodule NanoPlanner.Schedule.PlanItem do
     |> change_starts_at()
     |> change_ends_at()
     |> validate_common_fields()
+    |> validate_required(@date_time_fields)
   end
 
   def changeset(plan_item, %{"all_day" => "true"} = attrs) do

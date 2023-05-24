@@ -45,3 +45,11 @@ msgstr "開始日時"
 #, elixir-autogen, elixir-format
 msgid "Starts on"
 msgstr "開始日"
+
+## manually added
+msgid "S date"
+msgstr "開始日"
+
+## manually added
+msgid "E date"
+msgstr "終了日"
