@@ -38,7 +38,7 @@ defmodule NanoPlanner.Schedule.PlanItem do
   ]
 
   @date_fields [
-    :starts_om,
+    :starts_on,
     :ends_on
   ]
 
