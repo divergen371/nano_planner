@@ -2,8 +2,8 @@ defmodule NanoPlanner.Accounts do
   @moduledoc """
   Context module for user authentication
   """
+  import Ecto.Query
   alias NanoPlanner.Repo
-  alias NanoPlanner.Accounts.User
   alias NanoPlanner.Accounts.{User, SessionToken}
 
   def count_users do
@@ -28,7 +28,14 @@ defmodule NanoPlanner.Accounts do
     token
   end
 
-  def delete_session_token(_token) do
+  def delete_session_token(token) do
+    SessionToken
+    |> where([s], s.token == ^token)
+    |> Repo.delete_all()
+
     :ok
+  end
+
+  def get_user_by_session_token(_token) do
   end
 end
