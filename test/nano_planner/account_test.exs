@@ -58,4 +58,14 @@ defmodule NanoPlanner.AccountsTest do
       assert fetched.id == user.id
     end
   end
+
+  describe "generate_session_token/1" do
+    test "セッショントークンを生成する" do
+      user = user_fixture()
+      token = Accounts.generate_session_token(user)
+
+      assert is_binary(token)
+      assert byte_size(token) == 32
+    end
+  end
 end
