@@ -67,5 +67,13 @@ defmodule NanoPlanner.AccountsTest do
       assert is_binary(token)
       assert byte_size(token) == 32
     end
+
+    test "session_tokensテーブルに正しくレコードが挿入される" do
+      user = user_fixture()
+      token = Accounts.generate_session_token(user)
+      session_token = Repo.get_by(Accounts.SessionToken, token: token)
+      assert session_token != nil
+      assert session_token.user_id == user.id
+    end
   end
 end
