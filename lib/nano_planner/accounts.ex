@@ -27,4 +27,8 @@ defmodule NanoPlanner.Accounts do
     Repo.insert!(%SessionToken{token: token, user_id: user.id})
     token
   end
+
+  def delete_session_token(_token) do
+    :ok
+  end
 end

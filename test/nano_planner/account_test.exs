@@ -76,4 +76,14 @@ defmodule NanoPlanner.AccountsTest do
       assert session_token.user_id == user.id
     end
   end
+
+  describe "delete_session_token/1" do
+    test "セッショントークンを削除する" do
+      user = user_fixture()
+      token = Accounts.generate_session_token(user)
+
+      assert Accounts.delete_session_token(token) == :ok
+      assert Accounts.get_user_by_login_name_and_password(token) == nil
+    end
+  end
 end
