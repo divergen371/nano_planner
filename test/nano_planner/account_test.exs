@@ -21,9 +21,12 @@ defmodule NanoPlanner.AccountsTest do
   end
 
   describe "get_user_by_login_name_and_password/2" do
-    test "ログイン名が存在しない場合はユーザーを返さない" do
-      user_fixture(login_name: "alice")
+    setup do
+      user = user_fixture(login_name: "alice")
+      {:ok, user: user}
+    end
 
+    test "ログイン名が存在しない場合はユーザーを返さない" do
       fetched =
         Accounts.get_user_by_login_name_and_password(
           "unknown",
@@ -33,9 +36,7 @@ defmodule NanoPlanner.AccountsTest do
       assert fetched == nil
     end
 
-    test "パスワードが正しくなければユーザーを返さない" do
-      user = user_fixture(login_name: "alice")
-
+    test "パスワードが正しくなければユーザーを返さない", %{user: user} do
       fetched =
         Accounts.get_user_by_login_name_and_password(
           user.login_name,
@@ -45,9 +46,7 @@ defmodule NanoPlanner.AccountsTest do
       assert fetched == nil
     end
 
-    test "ユーザー名とパスワードが正しく一致すればユーザーを返す" do
-      user = user_fixture(login_name: "alice")
-
+    test "ユーザー名とパスワードが正しく一致すればユーザーを返す", %{user: user} do
       fetched =
         Accounts.get_user_by_login_name_and_password(
           user.login_name,
@@ -60,16 +59,18 @@ defmodule NanoPlanner.AccountsTest do
   end
 
   describe "generate_session_token/1" do
-    test "セッショントークンを生成する" do
+    setup do
       user = user_fixture()
+      {:ok, user: user}
+    end
+    test "セッショントークンを生成する", %{user: user} do
       token = Accounts.generate_session_token(user)
 
       assert is_binary(token)
       assert byte_size(token) == 32
     end
 
-    test "session_tokensテーブルに正しくレコードが挿入される" do
-      user = user_fixture()
+    test "session_tokensテーブルに正しくレコードが挿入される", %{user: user} do
       token = Accounts.generate_session_token(user)
       session_token = Repo.get_by(Accounts.SessionToken, token: token)
       assert session_token != nil
