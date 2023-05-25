@@ -1,4 +1,7 @@
 defmodule NanoPlanner.AccountsTest do
+  @moduledoc """
+  Test script for NanoPlanner.Accounts
+  """
   use NanoPlanner.DataCase
   alias NanoPlanner.Accounts
   import NanoPlanner.AccountsFixtures

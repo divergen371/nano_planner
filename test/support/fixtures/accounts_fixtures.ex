@@ -1,4 +1,7 @@
 defmodule NanoPlanner.AccountsFixtures do
+  @moduledoc """
+  Test fixture for NanoPlanner.Accounts
+  """
   import NanoPlanner.Repo, only: [insert!: 1]
   alias NanoPlanner.Accounts.User
 

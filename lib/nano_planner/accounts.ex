@@ -1,4 +1,7 @@
 defmodule NanoPlanner.Accounts do
+  @moduledoc """
+  Context module for user authentication
+  """
   alias NanoPlanner.Repo
   alias NanoPlanner.Accounts.User
 
