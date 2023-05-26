@@ -2,7 +2,7 @@ defmodule NanoPlannerWeb.TopController do
   use NanoPlannerWeb, :controller
 
   def index(conn, _params) do
-    if false do
+    if conn.assigns[:current_user] do
       render(conn, "index.html")
     else
       render(conn, "welcome.html")
