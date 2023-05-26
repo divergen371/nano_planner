@@ -16,6 +16,7 @@
     <header>
       <h1>
         <%= link "NanoPlanner", to: Routes.top_path(@conn, :index, []) %>
+        number = <%= @number %>
       </h1>
     </header>
     <main>

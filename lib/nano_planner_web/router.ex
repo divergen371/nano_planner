@@ -1,5 +1,6 @@
 defmodule NanoPlannerWeb.Router do
   use NanoPlannerWeb, :router
+  import NanoPlannerWeb.RandomNumber, only: [set_number: 2]
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -7,6 +8,7 @@ defmodule NanoPlannerWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :set_number, min: 101, max: 200
   end
 
   scope "/", NanoPlannerWeb do
@@ -32,6 +34,5 @@ defmodule NanoPlannerWeb.Router do
 
     get "/users/log_in", UserSessionController, :new
     post "/users/log_in", UserSessionController, :create
-
   end
 end
