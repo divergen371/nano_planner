@@ -16,12 +16,10 @@ defmodule NanoPlannerWeb.TopControllerTest do
     end
 
     test "ログイン後のトップページを表示する", %{conn: conn, user: user} do
-      session_token = Accounts.generate_session_token(user)
 
       conn =
         conn
-        |> init_test_session(%{})
-        |> put_session(:session_token, session_token)
+        |> log_in_user(user)
         |> get("/")
 
       assert Phoenix.Controller.view_template(conn) == "index.html"
