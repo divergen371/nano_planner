@@ -40,11 +40,16 @@ defmodule NanoPlanner.Schedule do
     |> convert_datetime()
   end
 
-  def get_plan_item!(id, owner) do
-    PlanItem
-    |> where([i], i.owner_id == ^owner.id and i.id == ^id)
-    |> Repo.one!()
-    |> convert_datetime()
+  def get_plan_item(id, owner) do
+    if item = Repo.get(PlanItem, id) do
+      if item.owner_id == owner.id do
+        {:ok, convert_datetime(item)}
+      else
+        {:error, :forbidden}
+      end
+    else
+      {:error, :not_found}
+    end
   end
 
   def build_plan_item do

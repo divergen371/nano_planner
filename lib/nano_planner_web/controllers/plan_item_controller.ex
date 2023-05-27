@@ -2,6 +2,21 @@ defmodule NanoPlannerWeb.PlanItemController do
   use NanoPlannerWeb, :controller
   alias NanoPlanner.Schedule
 
+  plug :fetch_plan_item when action in [:show, :edit, :update, :delete]
+
+  defp fetch_plan_item(conn, _opts) do
+    id = conn.params["id"]
+    current_user = conn.assigns.current_user
+
+    case Schedule.get_plan_item(id, current_user) do
+      {:ok, plan_item} ->
+        assign(conn, :plan_item, plan_item)
+
+      {:error, reason} ->
+        NanoPlannerWeb.CustomErrorPage.show(conn, reason)
+    end
+  end
+
   def index(conn, _params) do
     plan_items = Schedule.list_plan_items(conn.assigns.current_user)
     render(conn, "index.html", plan_items: plan_items)
@@ -38,19 +53,17 @@ defmodule NanoPlannerWeb.PlanItemController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    plan_item = Schedule.get_plan_item!(id, conn.assigns.current_user)
-    render(conn, "show.html", plan_item: plan_item)
+  def show(conn, _params) do
+    render(conn, "show.html")
   end
 
-  def edit(conn, %{"id" => id}) do
-    plan_item = Schedule.get_plan_item!(id, conn.assigns.current_user)
-    changeset = Schedule.change_plan_item(plan_item)
-    render(conn, "edit.html", plan_item: plan_item, changeset: changeset)
+  def edit(conn, _pzrams) do
+    changeset = Schedule.change_plan_item(conn.assigns.current_user)
+    render(conn, "edit.html", changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "plan_item" => plan_item_params}) do
-    plan_item = Schedule.get_plan_item!(id, conn.assigns.current_user)
+  def update(conn, %{"plan_item" => plan_item_params}) do
+    plan_item = conn.assigns.current_user
 
     case Schedule.update_plan_item(plan_item, plan_item_params) do
       {:ok, _plan_item} ->
@@ -65,9 +78,8 @@ defmodule NanoPlannerWeb.PlanItemController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    plan_item = Schedule.get_plan_item!(id, conn.assigns.current_user)
-    Schedule.delete_plan_item(plan_item)
+  def delete(conn, _params) do
+    Schedule.delete_plan_item(conn.assigns.current_user)
 
     conn
     |> put_flash(:info, "予定を削除しました。")
