@@ -3,13 +3,14 @@ defmodule NanoPlannerWeb.PlanItemController do
   alias NanoPlanner.Schedule
 
   def index(conn, _params) do
-    plan_items = Schedule.list_plan_items()
+    plan_items = Schedule.list_plan_items(conn.assigns.current_user)
     render(conn, "index.html", plan_items: plan_items)
   end
 
   def of_today(conn, _params) do
-    plan_items = Schedule.list_plan_items_of_today()
-    continued_plan_items = Schedule.list_continued_plan_items()
+    owner = conn.assigns.current_user
+    plan_items = Schedule.list_plan_items_of_today(owner)
+    continued_plan_items = Schedule.list_continued_plan_items(owner)
 
     render(conn, "of_today.html",
       plan_items: plan_items,
