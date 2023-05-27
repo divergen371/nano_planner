@@ -33,6 +33,7 @@ defmodule NanoPlannerWeb.PlanItemControllerTest do
     end
   end
 
+  @tag :login
   describe "POST /plan_items" do
     test "予定項目を追加する", %{conn: conn} do
       params = %{
