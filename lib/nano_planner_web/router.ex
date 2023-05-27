@@ -16,6 +16,16 @@ defmodule NanoPlannerWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :pre_auth do
+    plug :fetch_current_user
+    plug :redirect_if_user_is_authenticated
+  end
+
+  pipeline :restricted do
+    plug :fetch_current_user
+    plug :require_authenticated_user
+  end
+
   scope "/", NanoPlannerWeb do
     pipe_through :browser
 
@@ -40,8 +50,7 @@ defmodule NanoPlannerWeb.Router do
   scope "/", NanoPlannerWeb do
     pipe_through [
       :browser,
-      :fetch_current_user,
-      :redirect_if_user_is_authenticated
+      :pre_auth
     ]
 
     get "/users/log_in", UserSessionController, :new
@@ -51,8 +60,7 @@ defmodule NanoPlannerWeb.Router do
   scope "/", NanoPlannerWeb do
     pipe_through [
       :browser,
-      :fetch_current_user,
-      :require_authenticated_user
+      :restricted
     ]
 
     scope "/plan_item" do
