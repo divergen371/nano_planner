@@ -17,8 +17,8 @@ defmodule NanoPlannerWeb.UserSessionControllerTest do
     test "トップページにリダイレクトする", %{conn: conn, user: user} do
       conn =
         conn
-        |>log_in_user(user)
-        |>get("/users/log_in")
+        |> log_in_user(user)
+        |> get("/users/log_in")
 
       assert redirected_to(conn) == "/"
     end
