@@ -1,5 +1,4 @@
 defmodule NanoPlannerWeb.Router do
-  alias NanoPlannerWeb.UserSessionController
   use NanoPlannerWeb, :router
 
   import NanoPlannerWeb.UserAuth,

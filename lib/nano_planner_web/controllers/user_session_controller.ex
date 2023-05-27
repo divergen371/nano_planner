@@ -29,6 +29,12 @@ defmodule NanoPlannerWeb.UserSessionController do
   end
 
   def delete(conn, _params) do
-    redirect(conn, to: Routes.top_path(conn, :index))
+    session_token = get_session(conn, :session_token)
+    session_token && Accounts.delete_session_token(session_token)
+
+    conn
+    |> configure_session(renew: true)
+    |> clear_session()
+    |> redirect(to: Routes.top_path(conn, :index))
   end
 end
