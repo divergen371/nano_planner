@@ -1,4 +1,7 @@
 defmodule NanoPlannerWeb.UserAuth do
+  @moduledoc """
+  User Auth
+  """
   import Plug.Conn
   import Phoenix.Controller, only: [redirect: 2]
   alias NanoPlanner.Accounts

@@ -1,4 +1,7 @@
 defmodule NanoPlannerWeb.UserSessionControllerTest do
+  @moduledoc """
+  User session controller test module
+  """
   use NanoPlannerWeb.ConnCase
   import NanoPlanner.AccountsFixtures
 
