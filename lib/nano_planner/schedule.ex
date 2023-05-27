@@ -40,9 +40,10 @@ defmodule NanoPlanner.Schedule do
     |> convert_datetime()
   end
 
-  def get_plan_item!(id) do
+  def get_plan_item!(id, owner) do
     PlanItem
-    |> Repo.get!(id)
+    |> where([i], i.owner_id == ^owner.id and i.id == ^id)
+    |> Repo.one!()
     |> convert_datetime()
   end
 
