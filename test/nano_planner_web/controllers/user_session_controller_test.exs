@@ -54,6 +54,7 @@ defmodule NanoPlannerWeb.UserSessionControllerTest do
 
       conn = post(conn, "/users/log_in", params)
       assert Phoenix.Controller.view_template(conn) == "new.html"
+      assert conn.assigns[:error_message] != nil
     end
   end
 end
