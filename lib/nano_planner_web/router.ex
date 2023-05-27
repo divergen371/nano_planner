@@ -1,4 +1,5 @@
 defmodule NanoPlannerWeb.Router do
+  alias NanoPlannerWeb.UserSessionController
   use NanoPlannerWeb, :router
 
   import NanoPlannerWeb.UserAuth,
@@ -67,5 +68,6 @@ defmodule NanoPlannerWeb.Router do
     end
 
     resources "/plan_items", PlanItemController
+    delete "/users/log_out", UserSessionController, :delete
   end
 end

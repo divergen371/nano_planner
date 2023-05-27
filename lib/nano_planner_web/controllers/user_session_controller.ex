@@ -27,4 +27,8 @@ defmodule NanoPlannerWeb.UserSessionController do
       render(conn, "new.html", error_message: @error_message)
     end
   end
+
+  def delete(conn, _params) do
+    redirect(conn, to: Routes.top_path(conn, :index))
+  end
 end
