@@ -26,4 +26,34 @@ defmodule NanoPlannerWeb.UserSessionControllerTest do
       assert redirected_to(conn) == "/"
     end
   end
+
+  describe "POST /users/log_in" do
+    setup do
+      user = user_fixture(login_name: "alice")
+      {:ok, user: user}
+    end
+
+    test "ログインに成功する", %{conn: conn, user: user} do
+      params = %{
+        "user" => %{
+          "login_name" => user.login_name,
+          "password" => user.login_name <> "123!"
+        }
+      }
+
+      conn = post(conn, "/users/log_in", params)
+      assert redirected_to(conn) == "/"
+    end
+    test "ログインに失敗する", %{conn: conn, user: user} do
+      params = %{
+        "user" => %{
+          "login_name" => user.login_name,
+          "password" => "oops!1"
+        }
+      }
+
+      conn = post(conn, "/users/log_in", params)
+      assert Phoenix.Controller.view_template(conn) == "new.html"
+    end
+  end
 end
