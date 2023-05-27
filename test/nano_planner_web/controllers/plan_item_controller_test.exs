@@ -4,7 +4,6 @@ defmodule NanoPlannerWeb.PlanItemControllerTest do
   """
   use NanoPlannerWeb.ConnCase
   import NanoPlanner.ScheduleFixtures
-  import NanoPlanner.AccountsFixtures
   alias NanoPlanner.Repo
   alias NanoPlanner.Schedule.PlanItem
 
@@ -12,15 +11,12 @@ defmodule NanoPlannerWeb.PlanItemControllerTest do
     setup do
       plan_item_fixture([])
       plan_item_fixture([])
-      user = user_fixture(login_name: "alice")
-      {:ok, user: user}
+      :ok
     end
 
-    test "予定項目の一覧を表示する", %{conn: conn, user: user} do
-      conn =
-        conn
-        |> log_in_user(user)
-        |> get("/plan_items")
+    @tag :login
+    test "予定項目の一覧を表示する", %{conn: conn} do
+      conn = get(conn, "/plan_items")
 
       assert conn.status == 200
 
@@ -38,12 +34,7 @@ defmodule NanoPlannerWeb.PlanItemControllerTest do
   end
 
   describe "POST /plan_items" do
-    setup do
-      user = user_fixture(login_name: "alice")
-      {:ok, user: user}
-    end
-
-    test "予定項目を追加する", %{conn: conn, user: user} do
+    test "予定項目を追加する", %{conn: conn} do
       params = %{
         "plan_item" => %{
           "name" => "Test",
@@ -58,10 +49,7 @@ defmodule NanoPlannerWeb.PlanItemControllerTest do
         }
       }
 
-      conn =
-        conn
-        |> log_in_user(user)
-        |> post("/plan_items", params)
+      conn = post(conn, "/plan_items", params)
 
       assert conn.status == 302
       assert redirected_to(conn) == "/plan_items"
