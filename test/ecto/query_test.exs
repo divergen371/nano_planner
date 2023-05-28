@@ -15,4 +15,26 @@ defmodule Ecto.QueryTest do
       assert fetched.id == user.id
     end
   end
+
+  describe "join/5" do
+    test "テーブル結合" do
+      user1 = user_fixture(login_name: "alice")
+      user2 = user_fixture(login_name: "bob")
+
+      token1 = Accounts.generate_session_token(user1)
+      _token2 = Accounts.generate_session_token(user2)
+
+      query =
+        from s in Accounts.SessionToken,
+          where: s.token == ^token1,
+          join: u in Accounts.User,
+          on: s.user_id == u.id,
+          select: {s, u}
+
+      {fetched1, fetched2} = Repo.one(query)
+      assert = %Accounts.SessionToken{} = fetched1
+      assert = %Accounts.User{} = fetched2
+      assert fetched2.id == user1.id
+    end
+  end
 end
