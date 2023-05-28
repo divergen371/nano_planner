@@ -1,4 +1,4 @@
-defmodule ExUnit.InitialContextTest do
+defmodule NanoPlanner.InitialContextTest do
   use ExUnit.Case
 
   describe "コンテキスト" do
