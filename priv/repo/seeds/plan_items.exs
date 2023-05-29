@@ -25,7 +25,7 @@ insert!(%PlanItem{
   description: "『走れメロス』を読む",
   starts_at: Timex.shift(time0, days: 1, hours: 10),
   ends_at: Timex.shift(time0, days: 1, hours: 11),
-  owner: alice
+  owner_id: alice.id
 })
 
 insert!(%PlanItem{
@@ -33,7 +33,7 @@ insert!(%PlanItem{
   description: "洗剤を買う",
   starts_at: Timex.shift(time0, hours: 16),
   ends_at: Timex.shift(time0, hours: 16, minutes: 30),
-  owner: alice
+  owner_id: alice.id
 })
 
 insert!(%PlanItem{
@@ -41,7 +41,7 @@ insert!(%PlanItem{
   description: "新幹線の指定席を取る。\nお土産を買う",
   starts_at: Timex.shift(time1, years: 1, days: -2),
   ends_at: Timex.shift(time1, years: 1, days: 3),
-  owner: alice
+  owner_id: alice.id
 })
 
 insert!(%PlanItem{
@@ -49,7 +49,7 @@ insert!(%PlanItem{
   description: "猫の餌を買う",
   starts_at: Timex.shift(time0, days: 3, hours: 11),
   ends_at: Timex.shift(time0, days: 3, hours: 11, minutes: 30),
-  owner: alice
+  owner_id: alice.id
 })
 
 insert!(%PlanItem{
@@ -57,7 +57,7 @@ insert!(%PlanItem{
   description: "",
   starts_at: Timex.shift(time0, days: 10, hours: 15),
   ends_at: Timex.shift(time0, days: 10, hours: 16),
-  owner: alice
+  owner_id: alice.id
 })
 
 insert!(%PlanItem{
@@ -65,7 +65,7 @@ insert!(%PlanItem{
   description: "見る作品は決めてない",
   starts_at: Timex.shift(time0, hours: 23),
   ends_at: Timex.shift(time0, hours: 25),
-  owner: alice
+  owner_id: alice.id
 })
 
 insert!(%PlanItem{
@@ -73,7 +73,7 @@ insert!(%PlanItem{
   description: "札幌",
   starts_at: Timex.shift(time0, days: -1, hours: 10),
   ends_at: Timex.shift(time0, days: 1, hours: 17),
-  owner: alice
+  owner_id: alice.id
 })
 
 date0 = DateTime.to_date(time0)
@@ -84,7 +84,7 @@ date0 = DateTime.to_date(time0)
   all_day: true,
   starts_on: Date.add(date0, 7),
   ends_on: Date.add(date0, 7),
-  owner: alice
+  owner_id: alice.id
 }
 |> NanoPlanner.Schedule.set_time_boundaries()
 |> insert!()
@@ -95,7 +95,7 @@ date0 = DateTime.to_date(time0)
   all_day: true,
   starts_on: Date.add(date0, 14),
   ends_on: Date.add(date0, 16),
-  owner: bob
+  owner_id: bob.id
 }
 |> NanoPlanner.Schedule.set_time_boundaries()
 |> insert!()
