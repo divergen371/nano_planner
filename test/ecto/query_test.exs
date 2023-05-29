@@ -29,12 +29,12 @@ defmodule Ecto.QueryTest do
           where: s.token == ^token1,
           join: u in Accounts.User,
           on: s.user_id == u.id,
-          select: {s, u}
+          select: %{token: s.token, user_id: u.id}
 
-      {fetched1, fetched2} = Repo.one(query)
-      assert = %Accounts.SessionToken{} = fetched1
-      assert = %Accounts.User{} = fetched2
-      assert fetched2.id == user1.id
+      fetched = Repo.one(query)
+
+      assert is_binary(fetched.token)
+      assert fetched.user_id == user1.id
     end
   end
 end
