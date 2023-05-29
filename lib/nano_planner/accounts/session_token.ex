@@ -3,9 +3,10 @@ defmodule NanoPlanner.Accounts.SessionToken do
   スキーマモジュール　 - セッショントークン
   """
   use Ecto.Schema
+  alias NanoPlanner.Accounts.User
 
   schema "session_tokens" do
-    field :user_id, :integer
+    belongs_to :user, User
     field :token, :binary
 
     timestamps(type: :utc_datetime_usec, updated_at: false)

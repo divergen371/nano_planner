@@ -6,7 +6,6 @@ defmodule NanoPlannerWeb.UserAuth do
   import Phoenix.Controller, only: [redirect: 2]
   alias NanoPlannerWeb.Router.Helpers, as: Routes
 
-
   def redirect_if_user_is_authenticated(conn, _opts) do
     if conn.assigns[:current_user] do
       conn

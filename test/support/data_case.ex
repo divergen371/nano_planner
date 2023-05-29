@@ -41,7 +41,7 @@ defmodule NanoPlanner.DataCase do
         user_fixture(login_name: login_name)
       end
 
-      {:ok, user: user}
+    {:ok, user: user}
   end
 
   @doc """

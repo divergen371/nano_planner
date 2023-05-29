@@ -63,6 +63,7 @@ defmodule NanoPlanner.AccountsTest do
       user = user_fixture()
       {:ok, user: user}
     end
+
     test "セッショントークンを生成する", %{user: user} do
       token = Accounts.generate_session_token(user)
 

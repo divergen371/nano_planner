@@ -5,6 +5,7 @@ defmodule NanoPlanner.ScheduleFixtures do
 
   def plan_item_fixture(attrs) do
     owner = attrs[:owner] || user_fixture()
+
     insert!(%PlanItem{
       name: attrs[:name] || "Test",
       description: attrs[:description] || "Description",

@@ -1,6 +1,6 @@
 import NanoPlanner.Repo
-alias NanoPlanner.Schedule.PlanItem
 alias NanoPlanner.Accounts.User
+alias NanoPlanner.Schedule.PlanItem
 
 alice = get_by!(User, login_name: "alice")
 bob = get_by!(User, login_name: "bob")
@@ -25,7 +25,7 @@ insert!(%PlanItem{
   description: "『走れメロス』を読む",
   starts_at: Timex.shift(time0, days: 1, hours: 10),
   ends_at: Timex.shift(time0, days: 1, hours: 11),
-  owner_id: alice.id
+  owner: alice
 })
 
 insert!(%PlanItem{
@@ -33,15 +33,15 @@ insert!(%PlanItem{
   description: "洗剤を買う",
   starts_at: Timex.shift(time0, hours: 16),
   ends_at: Timex.shift(time0, hours: 16, minutes: 30),
-  owner_id: alice.id
+  owner: alice
 })
 
 insert!(%PlanItem{
   name: "帰省",
-  description: "新幹線の指定席を取る。\nお土産を買う",
+  description: "新幹線の指定席を取る。\nお土産を買う。",
   starts_at: Timex.shift(time1, years: 1, days: -2),
   ends_at: Timex.shift(time1, years: 1, days: 3),
-  owner_id: alice.id
+  owner: alice
 })
 
 insert!(%PlanItem{
@@ -49,7 +49,7 @@ insert!(%PlanItem{
   description: "猫の餌を買う",
   starts_at: Timex.shift(time0, days: 3, hours: 11),
   ends_at: Timex.shift(time0, days: 3, hours: 11, minutes: 30),
-  owner_id: alice.id
+  owner: alice
 })
 
 insert!(%PlanItem{
@@ -57,15 +57,15 @@ insert!(%PlanItem{
   description: "",
   starts_at: Timex.shift(time0, days: 10, hours: 15),
   ends_at: Timex.shift(time0, days: 10, hours: 16),
-  owner_id: alice.id
+  owner: alice
 })
 
 insert!(%PlanItem{
   name: "DVD鑑賞",
-  description: "見る作品は決めてない",
+  description: "作品未定",
   starts_at: Timex.shift(time0, hours: 23),
   ends_at: Timex.shift(time0, hours: 25),
-  owner_id: alice.id
+  owner: alice
 })
 
 insert!(%PlanItem{
@@ -73,7 +73,7 @@ insert!(%PlanItem{
   description: "札幌",
   starts_at: Timex.shift(time0, days: -1, hours: 10),
   ends_at: Timex.shift(time0, days: 1, hours: 17),
-  owner_id: alice.id
+  owner: alice
 })
 
 date0 = DateTime.to_date(time0)
@@ -84,7 +84,7 @@ date0 = DateTime.to_date(time0)
   all_day: true,
   starts_on: Date.add(date0, 7),
   ends_on: Date.add(date0, 7),
-  owner_id: alice.id
+  owner: alice
 }
 |> NanoPlanner.Schedule.set_time_boundaries()
 |> insert!()
@@ -95,7 +95,7 @@ date0 = DateTime.to_date(time0)
   all_day: true,
   starts_on: Date.add(date0, 14),
   ends_on: Date.add(date0, 16),
-  owner_id: bob.id
+  owner: bob
 }
 |> NanoPlanner.Schedule.set_time_boundaries()
 |> insert!()
