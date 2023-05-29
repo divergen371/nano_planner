@@ -38,10 +38,11 @@ defmodule NanoPlanner.Accounts do
   def get_user_by_session_token(token) do
     query =
       from s in SessionToken,
-        where: s.token == ^token
+        where: s.token == ^token,
+        join: u in User,
+        on: s.user_id == u.id,
+        select: u
 
-      session_token = Repo.one(query)
-
-    if session_token, do: Repo.get!(User, session_token.user_id)
+    Repo.one(query)
   end
 end
