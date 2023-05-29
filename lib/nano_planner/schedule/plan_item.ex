@@ -4,10 +4,9 @@ defmodule NanoPlanner.Schedule.PlanItem do
   """
   use Ecto.Schema
   import Ecto.Changeset
-  alias NanoPlanner.Accounts.User
 
   schema "plan_item" do
-    belongs_to :owner, User
+    field :owner_id, :integer
     field :name, :string
     field :description, :string, default: ""
     field :all_day, :boolean, default: false

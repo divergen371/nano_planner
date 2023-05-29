@@ -84,7 +84,7 @@ defmodule NanoPlanner.Schedule do
   end
 
   def create_plan_item(attrs, owner) do
-    %PlanItem{owner: owner}
+    %PlanItem{owner_id: owner.id}
     |> PlanItem.changeset(attrs)
     |> Repo.insert()
   end
